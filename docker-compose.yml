@@ -1,0 +1,14 @@
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: YtReWq4321
+      MYSQL_DATABASE: virtd
+    ports:
+      - "3306:3306"
+
+  app:
+    build:
+      context: ./app
+    depends_on:
+      - db

@@ -1,21 +1,18 @@
-def main():
-    # Настройки подключения
-    config = {
-        'user': 'root',
-        'password': 'password',
-        'host': 'db',  # Это имя сервиса из docker-compose
-        'database': 'test_db',
-    }
+import mysql.connector # type: ignore
+from mysql.connector import Error # type: ignore
 
+def create_connection():
+    connection = None
     try:
-        connection = mysql.connector.connect(**config)
-        print("Подключение успешно!")
-        # Здесь можете добавить логику работы с БД
-    except mysql.connector.Error as err:
-        print(f"Ошибка: {err}")
-    finally:
-        if connection:
-            connection.close()
+        connection = mysql.connector.connect(
+            host='mysql',
+            user='root',  # username
+            password='password',  # password
+            database='test_db'  # database name
+        )
+        print("Connection to MySQL DB successful")
+    except Error as e:
+        print(f"The error '{e}' occurred")
 
-if __name__ == '__main__':
-    main()
+if __name__ == "__main__":
+    create_connection()

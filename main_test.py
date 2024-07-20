@@ -1,18 +1,31 @@
-import mysql.connector # type: ignore
-from mysql.connector import Error # type: ignore
-
-def create_connection():
-    connection = None
+def main():
     try:
-        connection = mysql.connector.connect(
-            host='mysql',
-            user='root',  # username
-            password='password',  # password
-            database='test_db'  # database name
+        # Установите соединение с базой данных
+        conn = mysql.connector.connect(
+            host="db",
+            user="root",
+            password="password",
+            database="testdb"
         )
-        print("Connection to MySQL DB successful")
-    except Error as e:
-        print(f"The error '{e}' occurred")
+        cursor = conn.cursor()
+        
+        # Пример создания таблицы
+        cursor.execute("CREATE TABLE IF NOT EXISTS users (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255))")
+        
+        # Добавление пользователя
+        cursor.execute("INSERT INTO users (name) VALUES ('John Doe')")
+        conn.commit()
 
-if __name__ == "__main__":
-    create_connection()
+        # Получение пользователей
+        cursor.execute("SELECT * FROM users")
+        for row in cursor.fetchall():
+            print(row)
+
+    except mysql.connector.Error as err:
+        print(f"Error: {err}")
+    finally:
+        if conn:
+            conn.close()
+
+if __name__ == '__main__':
+    main()

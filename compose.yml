@@ -1,4 +1,7 @@
-version: "3.8"
+version: '3.8'
+
+include:
+  - proxy.yaml
 
 services:
   web:
@@ -30,8 +33,5 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
 
 networks:
-  backend:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 172.20.0.0/16
+  proxy_backend:
+    external: true

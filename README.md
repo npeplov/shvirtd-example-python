@@ -1,3 +1,6 @@
+Mysql screenshot:
+<img src="Screenshot from 2024-07-23 18-18-05.png">
+
 # shvirtd-example-python
 
 Example Flask-application for docker compose training.

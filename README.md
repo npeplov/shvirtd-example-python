@@ -1,9 +1,3 @@
-### Задача 3
-2. Выполните команду curl -L http://127.0.1.8090
-<img src="Screenshot from 2024-07-24 15-17-04.png">
-3. Подключитесь к бд mysql:
-<img src="Screenshot from 2024-07-24 15-11-54.png">
-
 # shvirtd-example-python
 
 Example Flask-application for docker compose training.
